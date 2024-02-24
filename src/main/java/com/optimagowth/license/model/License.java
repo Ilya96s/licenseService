@@ -1,5 +1,6 @@
 package com.optimagowth.license.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
@@ -12,6 +13,7 @@ import org.springframework.hateoas.RepresentationModel;
 @Builder
 @Entity
 @Table(name = "License")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class License extends RepresentationModel<License> {
 
     @Id
@@ -32,7 +34,20 @@ public class License extends RepresentationModel<License> {
     @Column(name = "license_type", nullable = false)
     private String licenseType;
 
+    @Transient
     private String comment;
+
+    @Transient
+    private String organizationName;
+
+    @Transient
+    private String contactName;
+
+    @Transient
+    private String contactPhone;
+
+    @Transient
+    private String contactEmail;
 
     public License withComment(String comment) {
         this.setComment(comment);
