@@ -18,7 +18,7 @@ public class License extends RepresentationModel<License> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Integer id;
 
     @Column(name = "license_id", nullable = false)
     private String licenseId;
