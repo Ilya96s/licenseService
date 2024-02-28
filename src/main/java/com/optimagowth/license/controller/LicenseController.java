@@ -2,9 +2,14 @@ package com.optimagowth.license.controller;
 
 import com.optimagowth.license.model.License;
 import com.optimagowth.license.service.LicenseService;
+import com.optimagowth.license.utils.UserContextHolder;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -12,6 +17,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequestMapping("v1/organization/{organizationId}/license")
 @RequiredArgsConstructor
+@Slf4j
 public class LicenseController {
 
     private final LicenseService licenseService;
@@ -61,5 +67,11 @@ public class LicenseController {
     @DeleteMapping("/{licenseId}")
     public ResponseEntity<String> deleteLicense(@PathVariable("licenseId") String licenseId) {
         return ResponseEntity.ok(licenseService.deleteLicense(licenseId));
+    }
+
+    @GetMapping("/")
+    public List<License> getLicenses(@PathVariable("organizationId") String organizationId) throws TimeoutException {
+        log.debug("LicenseServiceController Correlation id: {}", UserContextHolder.getContext().getCorrelationId());
+        return  licenseService.getLicensesByOrganization(organizationId);
     }
 }
