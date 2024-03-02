@@ -41,7 +41,7 @@ public class LicenseService {
 
     private final OrganizationRestTemplateClient organizationRestTemplateClient;
 
-    public License getLicense(String licenseId, String organizationId, String clientType){
+    public License getLicense(String organizationId, String licenseId, String clientType){
         License license = licenseRepository.findByOrganizationIdAndLicenseId(organizationId, licenseId);
         if (null == license) {
             throw new IllegalArgumentException(String.format(messageSource.getMessage("license.search.error.message", null, null),licenseId, organizationId));
