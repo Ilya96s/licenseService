@@ -2,6 +2,9 @@ package com.optimagowth.license.utils;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * Хранит значения из HTTP заголовков из запроса, отправленного клиентом
+ */
 @Component
 public class UserContext {
     public static final String CORRELATION_ID = "tmx-correlation-id";

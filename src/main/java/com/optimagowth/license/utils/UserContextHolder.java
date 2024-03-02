@@ -2,6 +2,10 @@ package com.optimagowth.license.utils;
 
 import org.springframework.util.Assert;
 
+/**
+ * Служит для сохранения UserContext в переменной ThreadLocal, доступной любым методам, вызываемым в потоке, который
+ * обрабатывает запрос пользователя
+ */
 public class UserContextHolder {
     private static final ThreadLocal<UserContext> userContext = new ThreadLocal<UserContext>();
 

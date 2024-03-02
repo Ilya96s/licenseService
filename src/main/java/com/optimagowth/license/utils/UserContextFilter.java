@@ -9,10 +9,21 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * Извлекает идентификатор корреляции из HTTP заголовка и сохраняет его в объекте UserContext
+ */
 @Component
 @Slf4j
 public class UserContextFilter implements Filter {
 
+    /**
+     * Извлекает идентификатор корреляции из заголова и записывает его в экземпляр класса UserContext
+     * @param servletRequest
+     * @param servletResponse
+     * @param filterChain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
