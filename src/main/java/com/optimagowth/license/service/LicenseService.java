@@ -1,6 +1,7 @@
 package com.optimagowth.license.service;
 
 import com.optimagowth.license.config.ServiceConfig;
+import com.optimagowth.license.events.model.OrganizationChangeModel;
 import com.optimagowth.license.model.License;
 import com.optimagowth.license.model.Organization;
 import com.optimagowth.license.repository.LicenseRepository;
@@ -16,6 +17,7 @@ import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -141,4 +143,11 @@ public class LicenseService {
         }
     }
     //
+
+    @KafkaListener(topics = "test-topic", groupId = "order-1",
+            properties = {"spring.json.value.default.type=com.optimagowth.license.events.model.OrganizationChangeModel"})
+    public void loggerSink(OrganizationChangeModel orgChane) {
+        log.info("Received an {} event for organization id {}",
+                orgChane.getAction(), orgChane.getOrganizationId());
+    }
 }
