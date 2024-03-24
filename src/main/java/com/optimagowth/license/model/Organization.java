@@ -1,11 +1,20 @@
 package com.optimagowth.license.model;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+
+import java.io.Serializable;
 
 @Data
-public class Organization {
+@RedisHash("Organization")
+public class Organization implements Serializable {
+
 
     private String id;
+
+    @Id
+    private String organizationId;
 
     private String name;
 

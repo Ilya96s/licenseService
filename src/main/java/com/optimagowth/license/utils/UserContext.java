@@ -15,43 +15,43 @@ public class UserContext {
 
     public static final String ORGANIZATION_ID = "tmx-organization-id";
 
-    private String correlationId = new String();
+    private static String correlationId = new String();
 
-    private String authToken = new String();
+    private static String authToken = new String();
 
-    private String userId = new String();
+    private static String userId = new String();
 
-    private String organizationId = new String();
+    private static String organizationId = new String();
 
-    public String getCorrelationId() {
+    public static String getCorrelationId() {
         return correlationId;
     }
 
-    public void setCorrelationId(String correlationId) {
-        this.correlationId = correlationId;
+    public static void setCorrelationId(String cId) {
+        correlationId = cId;
     }
 
-    public String getAuthToken() {
+    public static String getAuthToken() {
         return authToken;
     }
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+    public static void setAuthToken(String aToken) {
+        authToken = aToken;
     }
 
-    public String getUserId() {
+    public static String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public static void setUserId(String aUser) {
+        userId = aUser;
     }
 
-    public String getOrganizationId() {
+    public static String getOrganizationId() {
         return organizationId;
     }
 
-    public void setOrganizationId(String organizationId) {
-        this.organizationId = organizationId;
+    public static void setOrganizationId(String organization) {
+        organizationId = organization;
     }
 }
